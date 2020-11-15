@@ -20,26 +20,30 @@ const QuestionView = ({ loggedIn, question, updateViewQuestion }) => {
 
   return (
     <div>
-      <div>
-        <h2>{questionText}</h2>
-        <h5>Author: </h5>
-        <h5>{author}</h5>
-        <h5>Answer: </h5>
-        <h5>{answer}</h5>
-      </div>
-      {loggedIn
+      {question.author
       && (
-      <div>
-        <br />
-        <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Answer this question:</Form.Label>
-          <Form.Control as="textarea" rows={3} onChange={e => setAnswerText(e.target.value)} />
-        </Form.Group>
-        <Button variant="success" type="submit" onClick={e => answerQuestion(answerText)}>
-          Submit Answer
-        </Button>
-      </div>
+        <div>
+          <h2>{questionText}</h2>
+          <h5>Author: </h5>
+          <h5>{author}</h5>
+          <h5>Answer: </h5>
+          <h5>{answer}</h5>
+        </div>
       )}
+
+      {loggedIn && question.author
+        && (
+        <div>
+          <br />
+          <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Answer this question:</Form.Label>
+            <Form.Control as="textarea" rows={3} onChange={e => setAnswerText(e.target.value)} />
+          </Form.Group>
+          <Button variant="success" type="submit" onClick={e => answerQuestion(answerText)}>
+            Submit Answer
+          </Button>
+        </div>
+        )}
     </div>
   )
 }
