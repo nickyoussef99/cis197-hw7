@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/forbid-prop-types */
-import React, { useState } from 'react'
+import React, { useState, setState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
@@ -37,7 +37,13 @@ const QuestionView = ({ loggedIn, question, updateViewQuestion }) => {
           <br />
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>Answer this question:</Form.Label>
-            <Form.Control as="textarea" rows={3} onChange={e => setAnswerText(e.target.value)} />
+            <Form.Control
+              as="textarea"
+              rows={3}
+              onChange={e => {
+                setAnswerText(e.target.value)
+              }}
+            />
           </Form.Group>
           <Button variant="success" type="submit" onClick={e => answerQuestion(answerText)}>
             Submit Answer
